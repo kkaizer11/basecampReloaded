@@ -6,9 +6,11 @@
 /*   By: mkaizer- <mkaizer-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 17:23:49 by mkaizer-          #+#    #+#             */
-/*   Updated: 2022/05/19 01:12:19 by mkaizer-         ###   ########.fr       */
+/*   Updated: 2022/05/21 01:52:43 by mkaizer-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include <stdio.h>
 
 void	ft_putchar(char c);
 
@@ -35,4 +37,43 @@ int	ft_strcmp(char *s1, char *s2)
 	}
 	subtraction = (unsigned char)*s1 - (unsigned char)*s2;
 	return (subtraction);
+}
+
+void	print_params(int argc, char *argv[])
+{
+	int	i;
+
+	i = 1;
+	while (argc > i)
+	{
+		ft_putstr(argv[i]);
+		ft_putchar('\n');
+		i ++;
+	}
+}
+
+int	main(int argc, char *argv[])
+{
+	int		i;
+	int		j;
+	char	*temp;
+
+	i = 1;
+	while (argc > i)
+	{
+		j = 1;
+		while (argc > j)
+		{
+			if (ft_strcmp(argv[i], argv[j]) < 0)
+			{
+				temp = argv[i];
+				argv[i] = argv[j];
+				argv[j] = temp;
+			}
+			j++;
+		}
+		i++;
+	}
+	print_params(argc, argv);
+	return (0);
 }
